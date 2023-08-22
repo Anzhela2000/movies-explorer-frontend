@@ -1,0 +1,29 @@
+.NavTab {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 40px;
+    justify-content: center;
+    height: 66px;
+    align-items: center;
+    background-color: #F5F5F5;
+}
+
+.NavTab__link {
+    margin: 24px 0 24px 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #000000;
+    text-decoration: underline;
+}
+
+@media (min-width: 320px) and (max-width:677px) {
+    .NavTab {
+        column-gap: 24px;
+    }
+
+    .NavTab__link {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}

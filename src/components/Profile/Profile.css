@@ -1,0 +1,116 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__title {
+    margin: 74px 0 0 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.profile__input {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 34% 30%;
+    column-gap: 36%;
+    padding: 17px 0px;
+    margin: 0 435px;
+}
+
+.profile__input-name {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    color: #000000;
+    margin: 0;
+}
+
+.profile__input-name::placeholder {
+    color: #000;
+}
+
+.profile__input:first-child {
+    border-bottom: 1px solid #E8E8E8;
+    margin-top: 106px;
+}
+
+.profile__input_mod {
+    text-align: right;
+    border: none;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.profile__input_mod::placeholder {
+    color: #000;
+}
+
+.profile__input_mod:focus {
+    outline: none
+}
+
+.profile__button_change {
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 203px;
+    color: #000000;
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.profile__button_exit {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 16px;
+    color: #EE3465;
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .profile__title {
+        margin-top: 236px;
+    }
+
+    .profile__input {
+        margin: 0 179px;
+    }
+
+    .profile__input:first-child {
+        margin-top: 80px;
+    }
+
+    .profile__button_change {
+        margin-top: 190px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+    .profile__title {
+        margin-top: 70px;
+    }
+
+    .profile__input {
+        margin: 0 30px;
+        grid-template-columns: 50% 50%;
+        column-gap: 10px;
+    }
+
+    .profile__input:first-child {
+        margin-top: 63px;
+    }
+
+    .profile__button_change {
+        margin-top: 360px;
+    }
+
+    .profile__input-name {
+        text-align: left;
+    }
+}

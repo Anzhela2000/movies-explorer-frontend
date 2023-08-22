@@ -1,0 +1,124 @@
+.techs {
+    padding: 100px 70px;
+    background-color: #F5F5F5;
+}
+
+.techs__title {
+    margin: 0;
+    padding-bottom: 23px;
+    text-align: left;
+    width: 100%;
+    align-self: flex-start;
+    border-bottom: 1px solid;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.techs__content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.techs__content_title {
+    margin: 90px 0 0 0;
+    font-size: 50px;
+    line-height: 58px;
+    font-weight: 400;
+    letter-spacing: -2px;
+}
+
+.techs__content_subtitle {
+    margin: 26px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    max-width: 460px;
+    letter-spacing: -0.56px;
+}
+
+.techs__list {
+    margin: 100px 0 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 90px 90px 90px 90px 90px 90px 90px;
+    list-style: none;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.techs__item {
+    background-color: #E8E8E8;
+    height: 60px;
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.56px;
+}
+
+@media (min-width: 768px) and (max-width:1279px) {
+    .techs {
+        padding: 90px 50px;
+    }
+
+    .techs__content_title {
+        margin-top: 80px;
+    }
+
+    .techs__content_subtitle {
+        margin-top: 22px;
+    }
+
+    .techs__list {
+        margin-top: 80px;
+        grid-template-columns: 84px 84px 84px 84px 84px 84px 84px;
+    }
+
+    .techs__item {
+        font-size: 12px;
+    }
+
+    .techs__content_subtitle {
+        letter-spacing: -0.48px;
+    }
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+    .techs {
+        padding: 70px 18px;
+        background-color: #FAFAFA;
+    }
+
+    .techs__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+
+    .techs__list {
+        grid-template-columns: auto auto;
+        column-gap: 10px;
+        row-gap: 10px;
+        margin-top: 50px;
+    }
+
+    .techs__content_title {
+        font-size: 30px;
+        margin-top: 55px;
+    }
+
+    .techs__content_subtitle {
+        font-size: 11px;
+        margin-top: 4px;
+    }
+
+    .techs__item {
+        font-size: 12px;
+        height: 57px;
+        width: 84px;
+    }
+}

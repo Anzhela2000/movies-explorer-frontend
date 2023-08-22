@@ -1,0 +1,19 @@
+<svg width="40" height="43" viewBox="0 0 40 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="40" height="43" fill="#E5E5E5" style="fill:#E5E5E5;fill:color(display-p3 0.8980 0.8980 0.8980);fill-opacity:1;"/>
+<g id="RESULT_320_MAIN" clip-path="url(#clip0_891_3857)">
+<rect width="320" height="2090" transform="translate(-266 -15)" fill="#FAFAFA" style="fill:#FAFAFA;fill:color(display-p3 0.9792 0.9792 0.9792);fill-opacity:1;"/>
+<g id="header_320">
+<rect id="back__COLOR:primary" x="-266" y="-15" width="320" height="74" fill="#FAFAFA" style="fill:#FAFAFA;fill:color(display-p3 0.9792 0.9792 0.9792);fill-opacity:1;"/>
+<g id="icon__COLOR:icon-main">
+<path id="icon__COLOR:icon-main_2" fill-rule="evenodd" clip-rule="evenodd" d="M31 15L9 15V12.5L31 12.5V15Z" fill="black" style="fill:black;fill:black;fill-opacity:1;"/>
+<path id="icon__COLOR:icon-main_3" fill-rule="evenodd" clip-rule="evenodd" d="M31 24L9 24V21.5L31 21.5V24Z" fill="black" style="fill:black;fill:black;fill-opacity:1;"/>
+<path id="icon__COLOR:icon-main_4" fill-rule="evenodd" clip-rule="evenodd" d="M31 33L9 33V30.5L31 30.5V33Z" fill="black" style="fill:black;fill:black;fill-opacity:1;"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_891_3857">
+<rect width="320" height="2090" fill="white" style="fill:white;fill:white;fill-opacity:1;" transform="translate(-266 -15)"/>
+</clipPath>
+</defs>
+</svg>

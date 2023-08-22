@@ -1,0 +1,150 @@
+.aboutProject {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 110px 70px 0px 70px;
+}
+
+.aboutProject__title {
+    margin: 0 0 0 0;
+    padding-bottom: 23px;
+    text-align: left;
+    width: 100%;
+    align-self: flex-start;
+    border-bottom: 1px solid;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.aboutProject__content {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    column-gap: 40px;
+    margin: 70px 0 0 0;
+}
+
+.aboutProject__column {
+    text-align: left;
+}
+
+.aboutProject__column_title {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+}
+
+.aboutProject__column_subtitle {
+    margin-top: 28px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.aboutProject__progress {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-top: 100px;
+}
+
+.aboutProject__progress_left {
+    background-color: #3456F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 36px;
+    color: #FFFFFF;
+}
+
+.aboutProject__progress_right {
+    background-color: #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 36px;
+}
+
+.aboutProject__web {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-top: 14px;
+    margin-bottom: 110px;
+    font-size: 14px;
+}
+
+.aboutProject__web_text {
+    margin: 0;
+    color: #A0A0A0;
+}
+
+@media (max-width: 768px) and (max-width:1280px) {
+    .aboutProject__content {
+        column-gap: 30px;
+    }
+
+    .aboutProject {
+        margin: 90px 50px 0px 50px;
+    }
+
+    .aboutProject__progress {
+        margin-top: 79px;
+    }
+
+    .aboutProject__web {
+        margin-bottom: 90px;
+    }
+}
+
+@media (min-width: 320px) and (max-width:677px) {
+    .aboutProject {
+        margin: 70px 18px;
+    }
+
+    .aboutProject__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        padding-bottom: 26px;
+    }
+
+    .aboutProject__content {
+        grid-template-columns: auto;
+        margin-top: 60px;
+    }
+
+    .aboutProject__column_title {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .aboutProject__column_subtitle {
+        font-size: 11px;
+        line-height: 16px;
+        margin-bottom: 36px;
+        margin-top: 18px;
+        margin-bottom: 58px;
+    }
+
+    .aboutProject__progress {
+        margin-top: 2px;
+        grid-template-columns: 35% 65%;
+    }
+
+    .aboutProject__web {
+        grid-template-columns: 35% 65%;
+        margin-bottom: 0;
+    }
+
+    .aboutProject__progress_left {
+        font-size: 11px
+    }
+
+    .aboutProject__progress_right {
+        font-size: 11px
+    }
+
+    .aboutProject__web_text {
+        font-size: 11px;
+    }
+}

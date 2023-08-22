@@ -1,0 +1,164 @@
+.header {
+    display: grid;
+    grid-template-columns: 7% 93% 0;
+    height: 74px;
+    align-items: center;
+    padding: 0 70px 0 70px;
+}
+
+.header__main {
+    background-color: #DDDEE3;
+    display: grid;
+}
+
+.header__logo {
+    margin-right: 44px;
+}
+
+.header__links {
+    display: grid;
+    grid-template-columns: 90% 10% 0;
+}
+
+.header__auth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+
+.header__signup {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-decoration: none;
+    color: #000000;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    margin-right: 30px;
+}
+
+.header__signin {
+    line-height: 16px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #3456F3;
+    border-radius: 3px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 32px;
+}
+
+.header__account {
+    display: flex;
+    border: 2px solid #AAA;
+    padding: 6px 10px 6px 25px;
+    border-radius: 50px;
+    background-image: url("../../images/icon__COLOR_icon-main.svg");
+    background-position: 12px;
+    background-repeat: no-repeat;
+    text-align: right;
+    text-decoration: none;
+    justify-content: end;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.header__account-text {
+    padding-left: 7px;
+    color: #000;
+    margin: 0;
+    align-self: center;
+}
+
+.header__movies {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header__movies-item {
+    color: #000;
+    text-align: right;
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+.header__movies-focus {
+    font-weight: 500;
+}
+
+.header__burger {
+    background-image: url('../../images/burger.svg');
+    visibility: hidden;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 40px;
+    width: 43px;
+}
+
+@media (min-width: 767px) and (max-width: 1279px) {
+    .header {
+        padding: 0 30px 0 30px;
+        display: grid;
+        grid-template-columns: 5% 95% 0%;
+    }
+
+    .header__links {
+        column-gap: 0px;
+        visibility: hidden;
+        grid-template-columns: 46% 47% 7%;
+        justify-items: end;
+    }
+
+    .header__burger {
+        visibility: visible;
+    }
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+    .header {
+        padding: 0 4%;
+        grid-template-columns: 12% 88% 0%;
+    }
+
+    .header__signin {
+        font-size: 10px;
+        width: 54px;
+        height: 26px;
+    }
+
+    .header__signup {
+        font-size: 10px;
+        margin-right: 14px;
+    }
+
+    .header__burger {
+        visibility: visible;
+        padding: 0;
+    }
+
+    .header__links {
+        grid-template-columns: 44% 44% 12%;
+        justify-items: end;
+        column-gap: 0px;
+        visibility: hidden;
+    }
+
+    .header__movies {
+        gap: 0px;
+    }
+
+    .header__account {
+        padding: 0;
+    }
+}

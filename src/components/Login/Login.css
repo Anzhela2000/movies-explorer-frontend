@@ -1,0 +1,24 @@
+.login {
+    margin: 70px 442px;
+    align-items: center;
+}
+
+.login__submit {
+    margin-top: 221px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .login {
+        margin: 232px 186px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .login {
+        margin: 56px 30px 30px 30px;
+    }
+
+    .login__submit {
+        margin-top: 309px;
+    }
+}

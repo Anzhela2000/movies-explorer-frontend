@@ -1,9 +1,10 @@
 .header {
     display: grid;
     grid-template-columns: 7% 93% 0;
-    height: 74px;
+    min-height: 74px;
     align-items: center;
     padding: 0 70px 0 70px;
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif';
 }
 
 .header__main {
@@ -13,6 +14,7 @@
 
 .header__logo {
     margin-right: 44px;
+    cursor: pointer;
 }
 
 .header__links {
@@ -36,6 +38,7 @@
     border: none;
     background-color: rgba(0, 0, 0, 0);
     margin-right: 30px;
+    transition: 1s;
 }
 
 .header__signin {
@@ -50,16 +53,25 @@
     align-items: center;
     justify-content: center;
     width: 76px;
-    height: 32px;
+    min-height: 32px;
+    transition: 1s;
+}
+
+.header__signin:hover {
+    opacity: 0.7;
+}
+
+.header__signup:hover {
+    opacity: 0.7;
 }
 
 .header__account {
     display: flex;
     border: 2px solid #AAA;
-    padding: 6px 10px 6px 25px;
+    padding: 0 12px 0 0px;
     border-radius: 50px;
     background-image: url("../../images/icon__COLOR_icon-main.svg");
-    background-position: 12px;
+    background-position: 16px;
     background-repeat: no-repeat;
     text-align: right;
     text-decoration: none;
@@ -67,13 +79,23 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+    transition: 1s;
+}
+
+.header__account:hover{
+    opacity: 0.7;
 }
 
 .header__account-text {
-    padding-left: 7px;
+    padding-left: 0px;
     color: #000;
     margin: 0;
     align-self: center;
+}
+
+.header__account_menu{
+    padding: 6px 5px 6px 27px;
+    background-position: 6px;
 }
 
 .header__movies {
@@ -90,6 +112,11 @@
     font-weight: 400;
     line-height: 18px;
     text-decoration: none;
+    transition: 1s;
+}
+
+.header__movies-item:hover{
+    opacity: 0.7;
 }
 
 .header__movies-focus {
@@ -106,7 +133,7 @@
     width: 43px;
 }
 
-@media (min-width: 767px) and (max-width: 1279px) {
+@media (min-width: 768px) and (max-width: 1279px) {
     .header {
         padding: 0 30px 0 30px;
         display: grid;
@@ -134,7 +161,7 @@
     .header__signin {
         font-size: 10px;
         width: 54px;
-        height: 26px;
+        min-height: 26px;
     }
 
     .header__signup {
@@ -156,9 +183,5 @@
 
     .header__movies {
         gap: 0px;
-    }
-
-    .header__account {
-        padding: 0;
     }
 }

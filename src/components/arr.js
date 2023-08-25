@@ -47,15 +47,15 @@ const arr = [{
     nameEN: 'Generation P'
 },
 {
-    country: 'Russia, USA',
-    director: 'Виктор Гинзбург',
+    country: 'Russia',
+    director: 'Александр Хант',
     duration: '2ч10м',
-    year: '2011',
+    year: '2017',
     description: 'djdhjkdhjdjk',
-    image: 'https://www.indiewire.com/wp-content/uploads/2012/05/generation-p-original.jpg',
+    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/4716873/fc103b44-c7e1-4bb3-b9e4-b8be1bde549d/300x450',
     trailerLink: 'https://www.kinopoisk.ru/film/104893/video/',
     thumbnail: 'https://www.indiewire.com/wp-content/uploads/2012/05/generation-p-original.jpg',
-    nameRU: 'Generation П',
+    nameRU: 'Как Витька Чеснок вёз Лёху Штыря в дом инвалидов',
     nameEN: 'Generation P'
 },
 {

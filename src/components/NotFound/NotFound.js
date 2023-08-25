@@ -4,10 +4,10 @@ import './NotFound.css'
 function NotFound() {
     let history = useNavigate();
     return (
-        <section className="NotFound">
-            <h2 className="NotFound__title">404</h2>
-            <p className="NotFound__subtitle">Страница не найдена</p>
-            <button className="NotFound__button-back" onClick={() => history(-1)}>Назад</button>
+        <section className="not-found">
+            <h1 className="not-found__title">404</h1>
+            <p className="not-found__subtitle">Страница не найдена</p>
+            <button className="not-found__button-back" onClick={() => history(-1)}>Назад</button>
         </section>
     )
 }

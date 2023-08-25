@@ -18,8 +18,6 @@
     font-weight: 500;
 }
 
-.auth__form {}
-
 .auth__input {
     margin: 24px 0 0 0;
     border-bottom: 1px solid #E8E8E8;
@@ -37,7 +35,7 @@
     text-align: left;
 }
 
-.auth__input_mod {
+.auth__input_data {
     border: none;
     padding: 7px 200px 10px 0;
     display: flex;
@@ -47,7 +45,7 @@
     font-weight: 500;
 }
 
-.auth__input_mod:focus {
+.auth__input_data:focus {
     outline: none;
     border-bottom: 1px solid #3456F3;
 }
@@ -57,13 +55,18 @@
     background: #3456F3;
     border: none;
     width: 396px;
-    height: 45px;
-    margin: 152px 0 16px 0;
+    min-height: 45px;
+    margin: 21.7vh 0 16px 0;
     color: #FFF;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
+    transition: 1s;
+}
+
+.auth__submit:hover {
+    opacity: 0.8;
 }
 
 .auth__path-toogle {
@@ -82,11 +85,20 @@
     border: none;
     background-color: #FFF;
     text-decoration: none;
+    transition: 1s;
+}
+
+.auth__toogle:hover {
+    opacity: 0.7;
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
     .register {
         margin: 232px 186px;
+    }
+
+    .auth__submit {
+        margin-top: 15vh;
     }
 }
 
@@ -105,25 +117,25 @@
     }
 
     .auth__input {
-        margin-top: 25px;
+        margin-top: 24px;
         padding-bottom: 10px;
     }
 
     .auth__input-name {
-        padding-bottom: 8px;
+        padding-bottom: 6px;
     }
 
     .auth__input:first-child {
-        margin-top: 80px;
+        margin-top: 82px;
     }
 
     .auth__submit {
         width: 260px;
-        height: 45px;
-        margin-top: 236px;
+        margin-top: 31vh;
+        font-size: 12px;
     }
 
-    .auth__input_mod {
+    .auth__input_data {
         padding: 0;
     }
 

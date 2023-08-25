@@ -1,6 +1,6 @@
-import SearchForm from "./SearchForm/SearchForm"
+import SearchForm from "../SearchForm/SearchForm"
 import Header from "../Header/Header.js"
-import MoviesCardList from "./MoviesCardList/MoviesCardList"
+import MoviesCardList from "../MoviesCardList/MoviesCardList"
 import Footer from "../Footer/Footer"
 import arr from "../arr.js"
 import './Movies.css'

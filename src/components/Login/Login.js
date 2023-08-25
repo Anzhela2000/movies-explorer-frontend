@@ -10,11 +10,11 @@ function Login() {
             <form className='auth__form'>
                 <div className="auth__input">
                     <p className="auth__input-name">E-mail</p>
-                    <input className="auth__input_mod" required={true} type='email' minLength={2} maxLength={30} placeholder='Введите email' ></input>
+                    <input className="auth__input_data" required={true} type='email' minLength={2} maxLength={30} placeholder='Введите email' ></input>
                 </div>
                 <div className="auth__input">
                     <p className="auth__input-name">Пароль</p>
-                    <input className="auth__input_mod" required={true} type='password' minLength={8} maxLength={30} placeholder='Введите пароль'></input>
+                    <input className="auth__input_data" required={true} type='password' minLength={8} maxLength={30} placeholder='Введите пароль'></input>
                 </div>
                 <button className='auth__submit login__submit' type='submit'>Войти</button>
                 <p className='auth__path-toogle'>Ещё не зарегистрированы?<Link to={'/signup'} className='auth__toogle'>Регистрация</Link></p>

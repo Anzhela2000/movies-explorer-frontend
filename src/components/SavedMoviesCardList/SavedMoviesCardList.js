@@ -1,12 +1,12 @@
-import arrSave from "../../arrSave.js";
-import MoviesCard from "../../Movies/MoviesCard/MoviesCard.js"
-import '../../Movies/MoviesCardList/moviesCardList.css'
-import sign from '../../../images/delete-film.svg'
+import arrSave from "../arrSave.js";
+import MoviesCard from "../MoviesCard/MoviesCard.js"
+import '../MoviesCardList/MoviesCardList.js'
+import sign from '../../images/delete-film.svg'
 function MoviesCardList() {
     return (
         <section>
-        <main className="moviesCardList">
-            <ul className="moviesCard__list">
+        <main className="movies-card-list">
+            <ul className="movies-card__list">
                 {
                     arrSave.map((card) =>
                         <MoviesCard
@@ -19,7 +19,7 @@ function MoviesCardList() {
                 }
             </ul>
         </main>
-        <div className="moviesCardList__gap"></div>
+        <div className="movies-card-list__gap"></div>
         </section>
     )
 }

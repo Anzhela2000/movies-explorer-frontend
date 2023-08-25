@@ -1,7 +1,7 @@
-import arr from "../../arr.js";
+import arr from "../arr.js";
 import MoviesCard from "../MoviesCard/MoviesCard"
-import './moviesCardList.css'
-import sign from '../../../images/sign-film.svg'
+import './MoviesCardList.css'
+import sign from '../../images/sign-film.svg'
 function MoviesCardList() {
 
     let num = 16;
@@ -13,8 +13,8 @@ function MoviesCardList() {
     }
 
     return (
-        <main className="moviesCardList">
-            <ul className="moviesCard__list">
+        <main className="movies-card-list">
+            <ul className="movies-card__list">
                 {
                     arr.slice(0, (num)).map((card) =>
                         <MoviesCard
@@ -26,7 +26,7 @@ function MoviesCardList() {
                     )
                 }
             </ul>
-            <button className="moviesCardList__button-more">Ещё</button>
+            <button className="movies-card-list__button-more">Ещё</button>
         </main>
     )
 }

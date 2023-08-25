@@ -1,19 +1,19 @@
-.moviesCard {
+.movies-card {
     width: 270px;
-    height: 218px;
+    min-height: 218px;
     background-color: #FFFFFF;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
 }
 
-.moviesCard__img {
+.movies-card__img {
     width: 270px;
     height: 150px;
     border-radius: 10px 10px 0 0
 }
 
-.moviesCard__img_click {
+.movies-card__img_click {
     height: 150px;
     cursor: pointer;
     border: none;
@@ -21,27 +21,29 @@
     padding: 0;
 }
 
-.moviesCard__info {
+.movies-card__info {
     display: grid;
     grid-template-columns: 230px 16px;
     padding: 14px 12px;
 }
 
-.moviesCard__title {
-    display: flex;
+.movies-card__title {
+    text-align: left;
     font-size: 13px;
     font-weight: 700;
     color: #000000;
     margin: 0;
-    justify-content: flex-start;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.moviesCard__sign {
+.movies-card__sign {
     width: 16px;
     height: 16px;
 }
 
-.moviesCard__time {
+.movies-card__time {
     display: flex;
     justify-content: flex-start;
     margin: 10px 0 0 0;
@@ -51,44 +53,43 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
-    .moviesCard {
+    .movies-card {
         width: 339px;
         min-height: 257px;
     }
 
-    .moviesCard__info {
+    .movies-card__info {
         grid-template-columns: 299px 16px;
     }
 
-    .moviesCard__img {
+    .movies-card__img {
         width: 339px;
         height: 190px;
     }
 
-    .moviesCard__img_click {
+    .movies-card__img_click {
         width: 339px;
         height: 190px;
     }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-    .moviesCard {
+    .movies-card {
         width: 300px;
         min-height: 225px;
-        padding-bottom: 10px;
     }
 
-    .moviesCard__img {
+    .movies-card__img {
         width: 300px;
         height: 168px;
     }
 
-    .moviesCard__img_click {
+    .movies-card__img_click {
         width: 300px;
         height: 168px;
     }
 
-    .moviesCard__info {
+    .movies-card__info {
         grid-template-columns: 260px 16px;
     }
 }

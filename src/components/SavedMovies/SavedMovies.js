@@ -1,7 +1,7 @@
 import Header from '../Header/Header.js'
-import SearchForm from '../Movies/SearchForm/SearchForm.js'
+import SearchForm from '../SearchForm/SearchForm.js'
 import Footer from '../Footer/Footer.js'
-import MoviesCardList from '../SavedMovies/MoviesCardList/MoviesCardList.js'
+import MoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList.js'
 function SavedMovies() {
     return (
         <section className="movies">

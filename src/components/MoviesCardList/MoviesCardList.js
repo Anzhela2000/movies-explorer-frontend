@@ -1,32 +1,31 @@
-import arr from "../arr.js";
 import MoviesCard from "../MoviesCard/MoviesCard"
 import './MoviesCardList.css'
-import sign from '../../images/sign-film.svg'
-function MoviesCardList() {
 
-    let num = 16;
-
-    if (window.matchMedia("(min-width: 320px) and (max-width: 767px)").matches) {
-        num = 5;
-    } else if (window.matchMedia("(min-width: 768px) and (max-width: 1279px)").matches) {
-        num = 8;
-    }
+function MoviesCardList(props) {
 
     return (
         <main className="movies-card-list">
             <ul className="movies-card__list">
                 {
-                    arr.slice(0, (num)).map((card) =>
+                    props.cards.slice(0, props.num).map((card) =>
                         <MoviesCard
-                            image={card.image}
-                            title={card.nameRU}
-                            time={card.duration}
-                            sign={sign}
+                            country={card.country}
+                            director={card.director}
+                            duration={card.duration}
+                            year={card.year}
+                            description={card.description}
+                            image={`https://api.nomoreparties.co/${card.image.url}`}
+                            trailerLink={card.trailerLink}
+                            thumbnail={`https://api.nomoreparties.co/${card.image.formats.thumbnail.url}`}
+                            nameRU={card.nameRU}
+                            nameEN={card.nameEN}
+                            savedMovies={props.savedMovies}
                         />
+
                     )
                 }
             </ul>
-            <button className="movies-card-list__button-more">Ещё</button>
+            <button className={`movies-card-list__button-more ${props.isLoadMore ? "movies-card-list__button-more_active" : ""}`} onClick={props.showMoreCards}>Ещё</button>
         </main>
     )
 }

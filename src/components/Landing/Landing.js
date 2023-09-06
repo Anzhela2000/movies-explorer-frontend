@@ -7,10 +7,10 @@ import AboutMe from "../AboutMe/AboutMe"
 import Footer from "../Footer/Footer"
 import './Landing.css'
 
-function Landing() {
+function Landing(props) {
     return (
         <section className="landing">
-            <Header loggedIn={false} />
+            <Header loggedIn={props.isLogin} />
             <Promo />
             <NavTab />
             <AboutProject />

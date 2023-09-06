@@ -7,7 +7,7 @@
     font-family: 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif';
 }
 
-.header__main {
+.header__landing {
     background-color: #DDDEE3;
     display: grid;
 }
@@ -119,7 +119,7 @@
     opacity: 0.7;
 }
 
-.header__movies-focus {
+.header__movies_focus {
     font-weight: 500;
 }
 

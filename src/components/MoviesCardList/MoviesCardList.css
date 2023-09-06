@@ -25,6 +25,11 @@
     font-size: 12px;
     font-weight: 500;
     transition: 1s;
+    display: none;
+}
+
+.movies-card-list__button-more_active{
+    display: block;
 }
 
 .movies-card-list__button-more:hover {

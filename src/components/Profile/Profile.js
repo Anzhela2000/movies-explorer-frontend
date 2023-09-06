@@ -1,35 +1,104 @@
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import './Profile.css'
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { mainApi } from "../../utils/MainApi";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 function Profile(props) {
-    const [isDisabled, setisDisabled] = useState(true);
 
-    function setEdit() {
-        setisDisabled(false);
+    const currentUser = useContext(CurrentUserContext);
+    const [name, setName] = useState(currentUser.name);
+    const [email, setEmail] = useState(currentUser.email);
+    const [emailError, setEmailError] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [isEditButton, setisEditButton] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [isTitleName, setIsTitleName] = useState(currentUser.name);
+
+    //Поменять кнопку редактировать на на сохранить
+
+    function setEditButton() {
+        setisEditButton(false);
+    }
+
+    //Выход с сайта, очищает localStorage
+
+    function exit() {
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('localStorageMovies');
+        localStorage.removeItem('localStorageInputText');
+        localStorage.removeItem('localStorageCheckbox');
+        props.setLoggedIn(false);
+    }
+
+    //Изменение данных
+
+    function patchUser() {
+        mainApi.patchUser(name, email).then((data) => {
+            setIsTitleName(data.name);
+            setIsDisabled(true);
+            setisEditButton(true);
+        })
+    }
+
+    //Валидация
+
+    function emailHandler(e) {
+        changeDisabled();
+        setEmail(e.target.value)
+        const check = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if (!check.test(e.target.value)) {
+            setEmailError('Неверно введен email')
+            setIsDisabled(true);
+        } else {
+            setEmailError('')
+        }
+    }
+
+    const nameHandler = (e) => {
+        changeDisabled(e);
+        setName(e.target.value)
+        if (e.target.value.length < 3 || e.target.value.length > 30) {
+            setNameError('Имя должно быть быть длиннее 3 символов и короче 30')
+            setIsDisabled(true);
+        } else {
+            setNameError('')
+        }
+    }
+
+    //Сравнивает есть ли изменения, при их отсутствии делает кнопку сохранить неактивной
+
+    function changeDisabled(e) {
+        if (e.target.value === currentUser.name || e.target.value === currentUser.email) {
+            setIsDisabled(true);
+        } else {
+            setIsDisabled(false)
+        }
     }
 
     return (
         <section>
-            <Header loggedIn={true} />
+            <Header loggedIn={props.loggedIn} />
             <main className="profile">
-                <h1 className="profile__title">Привет, {props.name}!</h1>
+                <h1 className="profile__title">Привет, {isTitleName}!</h1>
                 <form className="profile__form">
                     <div className="profile__input">
                         <p className="profile__input-name">Имя</p>
-                        <input className="profile__input_data" disabled={isDisabled} placeholder={props.name} ></input>
+                        <input className="profile__input_data" name="name" onChange={nameHandler} disabled={isEditButton} value={name}></input>
                     </div>
+                    <span className="profile__input-error">{nameError}</span>
                     <div className="profile__input">
                         <p className="profile__input-name">E-mail</p>
-                        <input className="profile__input_data" disabled={isDisabled} placeholder={props.email} ></input>
+                        <input className="profile__input_data" name="email" onChange={emailHandler} disabled={isEditButton} value={email}></input>
                     </div>
+                    <span className="profile__input-error">{emailError}</span>
                 </form>
-                <section className={`profile__bottom ${isDisabled ? "" : "profile__bottom_disabled"}`}>
-                    <button className="profile__button_edit" onClick={setEdit}>Редактировать</button>
-                    <Link to={'../signin'} className="profile__button_exit">Выйти из аккаунта</Link>
+                <section className={`profile__bottom ${isEditButton ? "" : "profile__bottom_disabled"}`}>
+                    <button className="profile__button_edit" onClick={setEditButton}>Редактировать</button>
+                    <Link to={'../'} className="profile__button_exit" onClick={exit}>Выйти из аккаунта</Link>
                 </section>
-                <button className={`profile__button-save ${isDisabled ? "" : "profile__button-save_active"}`}>Сохранить</button>
+                <button className={`profile__button-save ${isEditButton ? "" : "profile__button-save_active"}`} disabled={isDisabled} onClick={patchUser}>Сохранить</button>
             </main>
         </section>
     )

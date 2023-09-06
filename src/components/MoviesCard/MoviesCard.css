@@ -38,9 +38,15 @@
     white-space: nowrap;
 }
 
-.movies-card__sign {
+.movies-card__button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
     width: 16px;
     height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .movies-card__time {

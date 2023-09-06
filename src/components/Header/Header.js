@@ -5,7 +5,7 @@ import HeaderLanding from './HeaderLanding';
 function Header(props) {
     return (
         <header>
-            {props.loggedIn ? < HeaderAuth /> : <HeaderLanding />}
+            {props.loggedIn ? < HeaderAuth activeClass={props.activeClass} savedActiveClass={props.savedActiveClass}/> : <HeaderLanding />}
         </header>
     )
 }

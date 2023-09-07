@@ -53,7 +53,7 @@ export default class MainApi {
     }
 
 export const mainApi = new MainApi({
-    url: 'http://localhost:3002',
+    url: 'https://api.banzh-movies.nomoreparties.co',
     headers: {
         authorization: `${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json',

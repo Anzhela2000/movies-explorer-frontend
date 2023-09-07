@@ -2,4 +2,10 @@
 
 ### Выбран макет №3 
 
-https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?node-id=1%3A1534&mode=dev
+# Ссылка на pullrequest
+
+https://github.com/Anzhela2000/movies-explorer-frontend/pull/2
+
+# Ссылка на деплой
+
+https://banzh-movies.nomoreparties.co/

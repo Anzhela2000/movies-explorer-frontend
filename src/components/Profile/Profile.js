@@ -4,6 +4,7 @@ import './Profile.css'
 import { useState, useContext } from "react";
 import { mainApi } from "../../utils/MainApi";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import Popup from "../Popup/Popup";
 
 function Profile(props) {
 
@@ -15,6 +16,8 @@ function Profile(props) {
     const [isEditButton, setisEditButton] = useState(true);
     const [isDisabled, setIsDisabled] = useState(true);
     const [isTitleName, setIsTitleName] = useState(currentUser.name);
+    const [isPopup, setIsPopup] = useState(false);
+    const [popupMessage, setIsPopupMessage] = useState('');
 
     //Поменять кнопку редактировать на на сохранить
 
@@ -39,6 +42,11 @@ function Profile(props) {
             setIsTitleName(data.name);
             setIsDisabled(true);
             setisEditButton(true);
+            setIsPopup(!isPopup);
+            setTimeout(() => {
+                setIsPopup(isPopup => !isPopup);
+            }, 1000);
+            setIsPopupMessage('Данные изменены');
         })
     }
 
@@ -46,13 +54,13 @@ function Profile(props) {
 
     function emailHandler(e) {
         changeDisabled();
-        setEmail(e.target.value)
+        setEmail(e.target.value);
         const check = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!check.test(e.target.value)) {
-            setEmailError('Неверно введен email')
+            setEmailError('Неверно введен email');
             setIsDisabled(true);
         } else {
-            setEmailError('')
+            setEmailError('');
         }
     }
 
@@ -63,7 +71,7 @@ function Profile(props) {
             setNameError('Имя должно быть быть длиннее 3 символов и короче 30')
             setIsDisabled(true);
         } else {
-            setNameError('')
+            setNameError('');
         }
     }
 
@@ -73,7 +81,7 @@ function Profile(props) {
         if (e.target.value === currentUser.name || e.target.value === currentUser.email) {
             setIsDisabled(true);
         } else {
-            setIsDisabled(false)
+            setIsDisabled(false);
         }
     }
 
@@ -99,6 +107,7 @@ function Profile(props) {
                     <Link to={'../'} className="profile__button_exit" onClick={exit}>Выйти из аккаунта</Link>
                 </section>
                 <button className={`profile__button-save ${isEditButton ? "" : "profile__button-save_active"}`} disabled={isDisabled} onClick={patchUser}>Сохранить</button>
+                <Popup isPopup={isPopup} popupMessage={popupMessage}></Popup>
             </main>
         </section>
     )

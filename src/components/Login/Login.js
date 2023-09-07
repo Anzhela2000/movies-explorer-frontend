@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import logo from '../../images/logo.svg'
-import '../Register/Register.css'
-import './Login.css'
+import { useEffect, useState } from 'react';
 import { auth } from '../../utils/Auth';
+import Popup from '../Popup/Popup';
+import logo from '../../images/logo.svg';
+import '../Register/Register.css';
+import './Login.css';
 
 function Login(props) {
 
@@ -12,7 +13,7 @@ function Login(props) {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [autorizationError, setAutorizationError] = useState('');
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   //Валидация и обработка инпутов
 
@@ -20,18 +21,26 @@ function Login(props) {
     setEmail(e.target.value)
     const check = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!check.test(e.target.value)) {
-      setEmailError('Неверно введен email')
+      setEmailError('Неверно введен email');
     } else {
-      setEmailError('')
+      setEmailError('');
     }
   }
 
   function passwordHandler(e) {
     setPassword(e.target.value)
     if (e.target.value.length < 8) {
-      setPasswordError('Пароль должен содержать не меньше 8 символов')
+      setPasswordError('Пароль должен содержать не меньше 8 символов');
     } else {
-      setPasswordError('')
+      setPasswordError('');
+    }
+  }
+
+  const checkInputs = () => {
+    if (emailError.length > 0 || passwordError.length > 0) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
     }
   }
 
@@ -54,7 +63,9 @@ function Login(props) {
         }
       })
   }
-  
+
+  useEffect(checkInputs, [emailHandler, passwordHandler])
+
   return (
     <section className="login">
       <Link to={'../'} className='auth__logo'><img src={logo} alt='логотип'></img></Link>

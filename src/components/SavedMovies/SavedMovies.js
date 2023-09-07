@@ -5,6 +5,7 @@ import MoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList.js'
 import { useState } from 'react'
 import Preloader from '../Preloader/Preloader.js'
 import { mainApi } from '../../utils/MainApi.js'
+import Popup from '../Popup/Popup.js'
 function SavedMovies(props) {
 
     const [cards, setCards] = useState(props.savedMovies);
@@ -12,6 +13,8 @@ function SavedMovies(props) {
     const [isPreloader, setIsPreloader] = useState(false);
     const [isErrorMessage, setisErrorMessage] = useState('');
     const [isCheckbox, setIsCheckbox] = useState(false);
+    const [isPopup, setIsPopup] = useState(false);
+    const [popupMessage, setIsPopupMessage] = useState('');
 
     //Обработчик input поисковой формы - передает данные для прелоадера
 
@@ -23,9 +26,10 @@ function SavedMovies(props) {
 
     async function toogleCheckbox(e) {
         if (isCheckbox) {
-            setIsCheckbox(false)
+            setIsCheckbox(false);
         } else {
-            setIsCheckbox(true)
+            setIsCheckbox(true);
+            filterShortMovie(cards);
         }
     }
 
@@ -73,10 +77,23 @@ function SavedMovies(props) {
         }
     }
 
+    //Попап удаления фильма
+
+    function popupDeleteMovie() {
+        setIsPopup(!isPopup);
+        setTimeout(() => {
+            setIsPopup(isPopup => !isPopup);
+        }, 1000);
+        setIsPopupMessage('Фильм удален');
+    }
+
     //Удаление фильма 
 
     function deleteMovie(card) {
-        mainApi.deleteFilm(card._id).then(() => setCards((state) => state.filter((c) => c._id !== card._id)))
+        mainApi.deleteFilm(card._id).then(() => {
+            setCards((state) => state.filter((c) => c._id !== card._id));
+            popupDeleteMovie();
+        })
     }
 
     return (
@@ -85,6 +102,7 @@ function SavedMovies(props) {
             <SearchForm pushMovies={getSavedMovies} handleChange={handleChange} inputValue={message} isCheckbox={isCheckbox} toogleCheckbox={toogleCheckbox} />
             <Preloader preloader={isPreloader} />
             <p className="movies__not-found-message">{isErrorMessage}</p>
+            <Popup isPopup={isPopup} popupMessage={popupMessage}></Popup>
             <MoviesCardList savedMovies={cards} deleteMovie={deleteMovie} />
             <Footer />
         </section>

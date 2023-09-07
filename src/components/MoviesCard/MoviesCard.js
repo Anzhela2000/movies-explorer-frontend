@@ -4,7 +4,7 @@ import { mainApi } from '../../utils/MainApi';
 import signGrey from '../../images/grayIcon.svg'
 import signGreen from '../../images/greenIcon.svg'
 
-function MoviesCard({ sign, savedMovies, ...card }) {
+function MoviesCard({ sign, savedMovies, popupAddMovie, popupDeleteMovie, ...card }) {
 
     const [isSave, setIsSave] = useState(false);
 
@@ -18,20 +18,23 @@ function MoviesCard({ sign, savedMovies, ...card }) {
         if (!isSaved) {
             mainApi.addFilm(card).then((movie) => {
                 setIsSave(true);
-                console.log(movie)
+                popupAddMovie();
             }).catch((err) => console.log(err));
         }
         else {
             const filterArr = savedMovies.find(i => i.nameRU === card.nameRU);
-            mainApi.deleteFilm(filterArr._id).then(() => setIsSave(false))
+            mainApi.deleteFilm(filterArr._id).then(() => {
+                setIsSave(false);
+                popupDeleteMovie();
+            })
         }
     }
 
     useEffect(() => {
         if (isSaved) {
-            setIsSave(true)
+            setIsSave(true);
         } else {
-            setIsSave(false)
+            setIsSave(false);
         }
     }, [])
 

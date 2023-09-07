@@ -4,8 +4,9 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList"
 import Footer from "../Footer/Footer"
 import { useEffect, useState } from "react"
 import { moviesApi } from "../../utils/MoviesApi"
-import './Movies.css'
+import Popup from "../Popup/Popup"
 import Preloader from "../Preloader/Preloader"
+import './Movies.css'
 
 function Movies(props) {
 
@@ -29,12 +30,14 @@ function Movies(props) {
     const [width, setWidth] = useState(window.innerWidth);
     const [isLoadMore, setIsLoadMore] = useState(false);
     const [isCheckbox, setIsCheckbox] = useState(localStorageCheckbox);
+    const [isPopup, setIsPopup] = useState(false);
+    const [popupMessage, setIsPopupMessage] = useState('');
 
     //отловить изменение экрана
 
     useEffect(() => {
         setWidth(window.innerWidth)
-    }, [window.innerWidth])
+    }, [window.innerWidth]);
 
     //устанавливает значения для отображаемых и подгружаемых карточек
 
@@ -56,30 +59,30 @@ function Movies(props) {
 
     const handleButtonMore = (arr) => {
         if (arr.length > isCountCards) {
-            setIsLoadMore(true)
+            setIsLoadMore(true);
         } else {
-            setIsLoadMore(false)
+            setIsLoadMore(false);
         }
     }
 
     const showMoreCards = () => {
-        setIsCountCards((prevValue) => prevValue + isLoadCards)
+        setIsCountCards((prevValue) => prevValue + isLoadCards);
     }
 
     //Обработчик input поисковой формы - передает данные для прелоадера
 
     const handleChange = e => {
-        setInput(e.target.value)
+        setInput(e.target.value);
     }
 
     //функция обращения к Api, дальше передает отфильтрованный массив
 
-    function toogleCheckbox(e) {
+    async function toogleCheckbox(e) {
         if (isCheckbox) {
-            setIsCheckbox(false)
+            setIsCheckbox(false);
         } else {
-            setIsCheckbox(true)
-            filterShortMovie(cards)
+            setIsCheckbox(true);
+            filterShortMovie(cards);
         }
     }
 
@@ -123,8 +126,26 @@ function Movies(props) {
                 setIsPreloader(false);
             }
         } else {
-            setisErrorMessage('Нужно ввести ключевое слово')
+            setisErrorMessage('Нужно ввести ключевое слово');
         }
+    }
+
+    //Открытие попапа
+
+    function popupAddMovie() {
+        setIsPopup(!isPopup);
+        setTimeout(() => {
+            setIsPopup(isPopup => !isPopup)
+        }, 1000);
+        setIsPopupMessage('Фильм добавлен');
+    }
+
+    function popupDeleteMovie() {
+        setIsPopup(!isPopup);
+        setTimeout(() => {
+            setIsPopup(isPopup => !isPopup)
+        }, 1000);
+        setIsPopupMessage('Фильм удален');
     }
 
     useEffect(() => {
@@ -142,8 +163,10 @@ function Movies(props) {
             <Header loggedIn={true} activeClass={'header__movies_focus'} />
             <SearchForm pushMovies={getMovies} handleChange={handleChange} inputValue={input} isCheckbox={isCheckbox} toogleCheckbox={toogleCheckbox} isErrorInput={isErrorMessage} />
             <Preloader preloader={isPreloader} />
-            <MoviesCardList cards={cards} num={isCountCards} isLoadMore={isLoadMore} showMoreCards={showMoreCards} savedMovies={props.savedMovies} />
+            <p className="movies__not-found-message">{isErrorMessage}</p>
+            <MoviesCardList cards={cards} num={isCountCards} isLoadMore={isLoadMore} showMoreCards={showMoreCards} savedMovies={props.savedMovies} popupAddMovie={popupAddMovie} popupDeleteMovie={popupDeleteMovie} />
             <Footer />
+            <Popup isPopup={isPopup} popupMessage={popupMessage}></Popup>
         </section>
     )
 }

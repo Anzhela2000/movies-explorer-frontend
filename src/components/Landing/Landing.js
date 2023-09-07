@@ -10,7 +10,7 @@ import './Landing.css'
 function Landing(props) {
     return (
         <section className="landing">
-            <Header loggedIn={props.isLogin} />
+            <Header loggedIn={props.isLogin} isLanding={true}/>
             <Promo />
             <NavTab />
             <AboutProject />

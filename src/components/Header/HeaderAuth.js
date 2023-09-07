@@ -15,7 +15,7 @@ function HeaderAuth(props) {
     }
 
     return (
-        <section className="header">
+        <section className={`header ${props.isLanding ? "header__landing" : ""}`}>
             <Menu isOpen={isOpenMenu} onClose={closeMenu} />
             <Link to={'../'}><img src={logo} className="header__logo" alt='логотип'></img></Link>
             <nav className="header__links">

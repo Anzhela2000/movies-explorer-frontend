@@ -124,7 +124,10 @@
 }
 
 .header__burger {
-    background-image: url('../../images/burger.svg');
+    background-image: url('../../images/burger.png');
+    background-position: center;
+    background-size: 44px;
+    background-repeat: no-repeat;
     visibility: hidden;
     border: none;
     background-color: rgba(0, 0, 0, 0);

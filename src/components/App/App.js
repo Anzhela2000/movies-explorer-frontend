@@ -62,7 +62,7 @@ function App() {
     else {
       console.log('err')
     }
-  }, [loggedIn])
+  }, [])
 
   useEffect(getSavedFilms, [isSavedMovies])
 

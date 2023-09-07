@@ -21,7 +21,6 @@ function MoviesCardList(props) {
                     }
                 </ul>
             </main>
-            <div className="movies-card-list__gap"></div>
         </section>
     )
 }

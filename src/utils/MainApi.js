@@ -39,21 +39,21 @@ export default class MainApi {
         }).then(this._checkResponse)
     }
 
-    patchUser(name , email) {
+    patchUser(name, email) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 name: name,
-                email: email  
+                email: email
             })
         }).then(this._checkResponse)
     }
 
-    }
+}
 
 export const mainApi = new MainApi({
-    url: 'https://api.banzh-movies.nomoreparties.co',
+    url: 'http://localhost:3002',
     headers: {
         authorization: `${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json',

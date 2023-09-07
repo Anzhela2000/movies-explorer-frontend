@@ -53,7 +53,7 @@ export default class MainApi {
 }
 
 export const mainApi = new MainApi({
-    url: 'http://localhost:3002',
+    url: 'https://api.nomoreparties.co/beatfilm-movies2',
     headers: {
         authorization: `${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json',

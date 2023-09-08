@@ -43,7 +43,7 @@ class Auth {
 }
 
 export const auth = new Auth({
-    url: 'http://localhost:3002',
+    url: 'https://api.banzh-movies.nomoreparties.co',
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"     

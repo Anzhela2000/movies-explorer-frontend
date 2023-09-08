@@ -35,7 +35,7 @@ class Auth {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization" : `${token}`
+                "Authorization" : `${token}`,
               },
         })
             .then(this.checkResponse)
@@ -43,10 +43,9 @@ class Auth {
 }
 
 export const auth = new Auth({
-    url: 'https://api.banzh-movies.nomoreparties.co',
+    url: 'http://localhost:3002',
     headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json",
-        
+        "Content-Type": "application/json"     
     }
 });

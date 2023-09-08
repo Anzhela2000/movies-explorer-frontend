@@ -60,7 +60,10 @@ function Movies(props) {
     const handleButtonMore = (arr) => {
         if (arr.length > isCountCards) {
             setIsLoadMore(true);
-        } else {
+        }  else if (arr.length === isCountCards) {
+            setIsLoadMore(false);
+        }
+        else {
             setIsLoadMore(false);
         }
     }
@@ -157,6 +160,10 @@ function Movies(props) {
     useEffect(() => {
         handleButtonMore(localStorageMovies);
     }, [])
+
+    useEffect(() => {
+        handleButtonMore(localStorageMovies);
+    }, [isCountCards])
 
     return (
         <section className="movies">

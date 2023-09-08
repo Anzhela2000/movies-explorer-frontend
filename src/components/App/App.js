@@ -27,7 +27,9 @@ function App() {
   //Получить сохраненные фильмы 
 
   function getSavedFilms() {
-    mainApi.getSavedFilms().then((movies) => setIsSavedMovies(movies))
+    if (loggedIn) {
+      mainApi.getSavedFilms().then((movies) => setIsSavedMovies(movies))
+    }
   }
 
   const navigate = useNavigate();
@@ -63,7 +65,7 @@ function App() {
     else {
       console.log('err')
     }
-  }, [])
+  }, [loggedIn])
 
   useEffect(getSavedFilms, [location.pathname])
 

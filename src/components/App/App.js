@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import './App.css';
 import '../../vendor/normalize.css'
@@ -31,6 +31,7 @@ function App() {
   }
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   //Проверка токена
 
@@ -64,7 +65,8 @@ function App() {
     }
   }, [])
 
-  useEffect(getSavedFilms, [isSavedMovies])
+  useEffect(getSavedFilms, [location.pathname])
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

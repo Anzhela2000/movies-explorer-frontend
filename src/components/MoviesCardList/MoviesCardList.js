@@ -20,8 +20,6 @@ function MoviesCardList(props) {
                             nameRU={card.nameRU}
                             nameEN={card.nameEN}
                             savedMovies={props.savedMovies}
-                            handleAddClick={props.handleAddClick}
-                            isSave={props.isSave}
                             popupAddMovie={props.popupAddMovie}
                             popupDeleteMovie={props.popupDeleteMovie}
                         />

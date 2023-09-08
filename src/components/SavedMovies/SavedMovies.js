@@ -2,19 +2,24 @@ import Header from '../Header/Header.js'
 import SearchForm from '../SearchForm/SearchForm.js'
 import Footer from '../Footer/Footer.js'
 import MoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Preloader from '../Preloader/Preloader.js'
 import { mainApi } from '../../utils/MainApi.js'
 import Popup from '../Popup/Popup.js'
 function SavedMovies(props) {
 
-    const [cards, setCards] = useState(props.savedMovies);
+    const [cards, setCards] = useState([]);
     const [message, setMessage] = useState('');
     const [isPreloader, setIsPreloader] = useState(false);
     const [isErrorMessage, setisErrorMessage] = useState('');
     const [isCheckbox, setIsCheckbox] = useState(false);
     const [isPopup, setIsPopup] = useState(false);
     const [popupMessage, setIsPopupMessage] = useState('');
+
+    function getSavedFilms() {
+        props.getSavedFilms();
+        setCards(props.savedMovies)
+      }
 
     //Обработчик input поисковой формы - передает данные для прелоадера
 
@@ -95,6 +100,8 @@ function SavedMovies(props) {
             popupDeleteMovie();
         })
     }
+
+    useEffect( getSavedFilms ,[props.savedMovies])
 
     return (
         <section className="movies">

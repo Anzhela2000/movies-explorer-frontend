@@ -47,7 +47,9 @@ function Profile(props) {
                 setIsPopup(isPopup => !isPopup);
             }, 1000);
             setIsPopupMessage('Данные изменены');
-        })
+        }).catch(
+            setIsPopupMessage("Произошла ошибка")
+        )
     }
 
     //Валидация

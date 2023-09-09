@@ -22,6 +22,7 @@ function MoviesCardList(props) {
                             savedMovies={props.savedMovies}
                             popupAddMovie={props.popupAddMovie}
                             popupDeleteMovie={props.popupDeleteMovie}
+                            setIsSavedMovies={props.setIsSavedMovies}
                         />
 
                     )

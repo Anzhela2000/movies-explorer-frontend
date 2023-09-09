@@ -171,7 +171,7 @@ function Movies(props) {
             <SearchForm pushMovies={getMovies} handleChange={handleChange} inputValue={input} isCheckbox={isCheckbox} toogleCheckbox={toogleCheckbox} isErrorInput={isErrorMessage} />
             <Preloader preloader={isPreloader} />
             <p className="movies__not-found-message">{isErrorMessage}</p>
-            <MoviesCardList cards={cards} num={isCountCards} isLoadMore={isLoadMore} showMoreCards={showMoreCards} savedMovies={props.savedMovies} popupAddMovie={popupAddMovie} popupDeleteMovie={popupDeleteMovie} />
+            <MoviesCardList cards={cards} num={isCountCards} isLoadMore={isLoadMore} showMoreCards={showMoreCards} savedMovies={props.savedMovies} popupAddMovie={popupAddMovie} popupDeleteMovie={popupDeleteMovie} setIsSavedMovies={props.setIsSavedMovies} />
             <Footer />
             <Popup isPopup={isPopup} popupMessage={popupMessage}></Popup>
         </section>

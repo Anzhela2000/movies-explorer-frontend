@@ -17,7 +17,7 @@ export default class MainApi {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `${localStorage.getItem("jwt")}`,
-             },
+            },
         }).then(this._checkResponse)
     }
 
@@ -27,7 +27,7 @@ export default class MainApi {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `${localStorage.getItem("jwt")}`,
-             },
+            },
             body: JSON.stringify(movie)
         }).then(this._checkResponse)
     }
@@ -37,7 +37,7 @@ export default class MainApi {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `${localStorage.getItem("jwt")}`,
-             },
+            },
         }).then(this._checkResponse)
     }
 
@@ -47,7 +47,7 @@ export default class MainApi {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `${localStorage.getItem("jwt")}`,
-             },
+            },
         }).then(this._checkResponse)
     }
 
@@ -57,7 +57,7 @@ export default class MainApi {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `${localStorage.getItem("jwt")}`,
-             },
+            },
             body: JSON.stringify({
                 name: name,
                 email: email

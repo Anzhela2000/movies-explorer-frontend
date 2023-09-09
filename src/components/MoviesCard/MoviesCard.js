@@ -3,11 +3,8 @@ import { useEffect, useState } from 'react';
 import { mainApi } from '../../utils/MainApi';
 import signGrey from '../../images/grayIcon.svg'
 import signGreen from '../../images/greenIcon.svg'
-import { useLocation } from 'react-router-dom';
 
-function MoviesCard({ sign, savedMovies, popupAddMovie, popupDeleteMovie, ...card }) {
-
-    const location = useLocation();
+function MoviesCard({ sign, savedMovies, popupAddMovie, popupDeleteMovie, setIsSavedMovies, ...card }) {
 
     const [isSave, setIsSave] = useState(false);
 
@@ -21,6 +18,7 @@ function MoviesCard({ sign, savedMovies, popupAddMovie, popupDeleteMovie, ...car
         if (!isSaved) {
             mainApi.addFilm(card).then((movie) => {
                 setIsSave(true);
+                setIsSavedMovies([...savedMovies, movie]);
                 popupAddMovie();
             }).catch((err) => console.log(err));
         }

@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import './App.css';
 import '../../vendor/normalize.css'
@@ -24,16 +24,12 @@ function App() {
     "email": ''
   });
 
-  //Получить сохраненные фильмы 
-
-  function getSavedFilms() {
-    if (loggedIn) {
-      mainApi.getSavedFilms().then((movies) => setIsSavedMovies(movies))
-    }
-  }
-
   const navigate = useNavigate();
-  const location = useLocation();
+
+  async function getSavedFilms() {
+    let movies = await mainApi.getSavedFilms();
+    setIsSavedMovies(movies);
+  }
 
   //Проверка токена
 
@@ -41,9 +37,10 @@ function App() {
     tokenCheck();
   }, [])
 
-  const tokenCheck = () => {
+  async function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
+      await getSavedFilms();
       setLoggedIn(true);
       auth.tokenCheck(jwt)
         .then((data) => {
@@ -67,9 +64,6 @@ function App() {
     }
   }, [loggedIn])
 
-  useEffect(getSavedFilms, [location.pathname])
-
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -77,8 +71,8 @@ function App() {
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/profile" element={<ProtectedRouteElement component={Profile} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/saved-movies" element={<ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} savedMovies={isSavedMovies} getSavedFilms={getSavedFilms} />} />
-          <Route path="/movies" element={<ProtectedRouteElement component={Movies} loggedIn={loggedIn} savedMovies={isSavedMovies} />} />
+          <Route path="/saved-movies" element={<ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} savedMovies={isSavedMovies} setIsSavedMovies={setIsSavedMovies} getSavedFilms={getSavedFilms} />} />
+          <Route path="/movies" element={<ProtectedRouteElement component={Movies} loggedIn={loggedIn} savedMovies={isSavedMovies} setIsSavedMovies={setIsSavedMovies} />} />
           <Route path="/" element={<Landing isLogin={loggedIn} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

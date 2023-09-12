@@ -69,9 +69,9 @@ function SavedMovies(props) {
             setIsPreloader(true);
             try {
                 if (isCheckbox) {
-                    filterShortMovie(JSON.parse(localStorage.getItem('allSavedMovies')))
+                    filterShortMovie(props.savedMovies);
                 } else {
-                    filterArr(JSON.parse(localStorage.getItem('allSavedMovies')))
+                    filterArr(props.savedMovies);
                 }
             } catch {
                 setisErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');

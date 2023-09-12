@@ -42,7 +42,7 @@ function Profile(props) {
     async function patchUser() {
         setIsDisabled(true);
         try {
-            props.patchUser(name, email)
+            props.patchUser(name, email);
             setIsTitleName(currentUser.name);
             setisEditButton(true);
             setIsPopup(!isPopup);

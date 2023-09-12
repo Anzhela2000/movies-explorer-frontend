@@ -24,10 +24,11 @@ function SavedMovies(props) {
 
     //изсмнение состояния чекбокса
 
-    async function toogleCheckbox(e) {
+    async function toogleCheckbox() {
+        setisErrorMessage('');
         if (isCheckbox) {
             setIsCheckbox(false);
-            filterArr(JSON.parse(localStorage.getItem('allSavedMovies')));
+            filterArr(props.savedMovies);
         } else {
             setIsCheckbox(true);
             filterShortMovie(cards);
@@ -37,7 +38,10 @@ function SavedMovies(props) {
     //функции обращения к Api, дальше передает отфильтрованный массив
 
     function filterShortMovie(arr) {
-        const resultShortMovie = arr.filter((movie) =>
+        const regex = new RegExp(message, 'gi')
+        const result = arr.filter((movie) =>
+            movie.nameRU.match(regex) || movie.nameEN.match(regex));
+        const resultShortMovie = result.filter((movie) =>
             movie.duration < 40)
         if (resultShortMovie.length === 0) {
             setisErrorMessage('Ничего не найдено');
@@ -75,7 +79,8 @@ function SavedMovies(props) {
                 setIsPreloader(false);
             }
         } else {
-            setisErrorMessage('Нужно ввести ключевое слово')
+            setisErrorMessage('Нужно ввести ключевое слово');
+            setIsPreloader(false);
         }
     }
 

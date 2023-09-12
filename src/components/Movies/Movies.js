@@ -147,6 +147,7 @@ function Movies(props) {
         }
         else {
             setisErrorMessage('Нужно ввести ключевое слово');
+            setIsPreloader(false);
         }
     }
 
@@ -154,12 +155,16 @@ function Movies(props) {
 
     function toogleCheckbox() {
         setisErrorMessage('');
-        if (isCheckbox) {
-            setIsCheckbox(false);
-            filterArr(JSON.parse(localStorage.getItem('allMovies')));
+        if (input.length > 0  && allMovies !== null) {
+            if (isCheckbox) {
+                setIsCheckbox(false);
+                filterArr(JSON.parse(localStorage.getItem('allMovies')));
+            } else {
+                setIsCheckbox(true);
+                filterShortMovie(cards);
+            }
         } else {
-            setIsCheckbox(true);
-            filterShortMovie(cards);
+            setisErrorMessage('Введите ключевое слово и нажмите поиск');
         }
     }
 

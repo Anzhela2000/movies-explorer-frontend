@@ -32,15 +32,17 @@ function Profile(props) {
         localStorage.removeItem('localStorageMovies');
         localStorage.removeItem('localStorageInputText');
         localStorage.removeItem('localStorageCheckbox');
+        localStorage.removeItem('allMovies');
+        localStorage.removeItem('allSavedMovies');
         props.setLoggedIn(false);
     }
 
     //Изменение данных
 
     function patchUser() {
+        setIsDisabled(true);
         mainApi.patchUser(name, email).then((data) => {
             setIsTitleName(data.name);
-            setIsDisabled(true);
             setisEditButton(true);
             setIsPopup(!isPopup);
             setTimeout(() => {
@@ -55,7 +57,6 @@ function Profile(props) {
     //Валидация
 
     function emailHandler(e) {
-        changeDisabled();
         setEmail(e.target.value);
         const check = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!check.test(e.target.value)) {
@@ -63,17 +64,18 @@ function Profile(props) {
             setIsDisabled(true);
         } else {
             setEmailError('');
+            changeDisabled(e)
         }
     }
 
     const nameHandler = (e) => {
-        changeDisabled(e);
         setName(e.target.value)
         if (e.target.value.length < 3 || e.target.value.length > 30) {
             setNameError('Имя должно быть быть длиннее 3 символов и короче 30')
             setIsDisabled(true);
         } else {
             setNameError('');
+            changeDisabled(e);
         }
     }
 

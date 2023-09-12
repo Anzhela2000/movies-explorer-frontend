@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { auth } from '../../utils/Auth';
-import Popup from '../Popup/Popup';
 import logo from '../../images/logo.svg';
 import '../Register/Register.css';
 import './Login.css';
@@ -50,6 +49,8 @@ function Login(props) {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
+    setIsDisabled(true);
+    setAutorizationError('');
     auth.authorize(email, password)
       .then(data => {
         if (data) {
@@ -58,13 +59,14 @@ function Login(props) {
           navigate("/movies", {
             replace: true
           });
+          props.getSavedFilms();
         } else {
-          setAutorizationError('Вы ввели неправильный логин или пароль.')
+          setAutorizationError('Вы ввели неправильный логин или пароль.');
         }
       })
   }
 
-  useEffect(checkInputs, [emailHandler, passwordHandler])
+  useEffect(checkInputs, [email, password]);
 
   return (
     <section className="login">

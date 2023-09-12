@@ -27,6 +27,7 @@ function SavedMovies(props) {
     async function toogleCheckbox(e) {
         if (isCheckbox) {
             setIsCheckbox(false);
+            filterArr(JSON.parse(localStorage.getItem('allSavedMovies')));
         } else {
             setIsCheckbox(true);
             filterShortMovie(cards);
@@ -48,9 +49,7 @@ function SavedMovies(props) {
         const regex = new RegExp(message, 'gi')
         const result = arr.filter((movie) =>
             movie.nameRU.match(regex) || movie.nameEN.match(regex));
-        if (isCheckbox) {
-            filterShortMovie(result);
-        } else if (result.length === 0) {
+        if (result.length === 0) {
             setisErrorMessage('Ничего не найдено');
         }
         else {
@@ -65,8 +64,11 @@ function SavedMovies(props) {
         if (message.length > 0) {
             setIsPreloader(true);
             try {
-                let movies = await mainApi.getSavedFilms();
-                filterArr(movies);
+                if (isCheckbox) {
+                    filterShortMovie(JSON.parse(localStorage.getItem('allSavedMovies')))
+                } else {
+                    filterArr(JSON.parse(localStorage.getItem('allSavedMovies')))
+                }
             } catch {
                 setisErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
             } finally {

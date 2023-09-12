@@ -14,6 +14,10 @@
     justify-content: left;
 }
 
+.movies-card__item{
+    list-style-type: none;
+}
+
 .movies-card-list__button-more {
     width: 320px;
     min-height: 36px;

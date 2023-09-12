@@ -10,13 +10,15 @@ function MoviesCardList(props) {
                 <ul className="movies-card__list">
                     {
                         props.savedMovies.map((card) =>
-                            <MoviesCard
-                                image={card.image}
-                                nameRU={card.nameRU}
-                                duration={card.duration}
-                                _id={card._id}
-                                deleteMovie={props.deleteMovie}
-                            />
+                            <li className="movies-card__item" key={card._id}>
+                                <MoviesCard
+                                    image={card.image}
+                                    nameRU={card.nameRU}
+                                    duration={card.duration}
+                                    _id={card._id}
+                                    deleteMovie={props.deleteMovie}
+                                />
+                            </li>
                         )
                     }
                 </ul>

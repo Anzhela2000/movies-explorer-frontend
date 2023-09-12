@@ -8,23 +8,24 @@ function MoviesCardList(props) {
             <ul className="movies-card__list">
                 {
                     props.cards.slice(0, props.num).map((card) =>
-                        <MoviesCard
-                            country={card.country}
-                            director={card.director}
-                            duration={card.duration}
-                            year={card.year}
-                            description={card.description}
-                            image={`https://api.nomoreparties.co/${card.image.url}`}
-                            trailerLink={card.trailerLink}
-                            thumbnail={`https://api.nomoreparties.co/${card.image.formats.thumbnail.url}`}
-                            nameRU={card.nameRU}
-                            nameEN={card.nameEN}
-                            savedMovies={props.savedMovies}
-                            popupAddMovie={props.popupAddMovie}
-                            popupDeleteMovie={props.popupDeleteMovie}
-                            setIsSavedMovies={props.setIsSavedMovies}
-                        />
-
+                        <li className="movies-card__item" key={card.id}>
+                            <MoviesCard
+                                country={card.country}
+                                director={card.director}
+                                duration={card.duration}
+                                year={card.year}
+                                description={card.description}
+                                image={`https://api.nomoreparties.co/${card.image.url}`}
+                                trailerLink={card.trailerLink}
+                                thumbnail={`https://api.nomoreparties.co/${card.image.formats.thumbnail.url}`}
+                                nameRU={card.nameRU}
+                                nameEN={card.nameEN}
+                                savedMovies={props.savedMovies}
+                                popupAddMovie={props.popupAddMovie}
+                                popupDeleteMovie={props.popupDeleteMovie}
+                                setIsSavedMovies={props.setIsSavedMovies}
+                            />
+                        </li>
                     )
                 }
             </ul>

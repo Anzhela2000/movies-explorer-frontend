@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import logo from '../../images/logo.svg'
 import './Register.css'
 import { auth } from '../../utils/Auth';
-function Register() {
+function Register(props) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -52,7 +52,6 @@ function Register() {
         } else if (name.length === 0 || email.length === 0 || password.length === 0) {
             setIsDisabled(true);
         }
-
         else {
             setIsDisabled(false);
         }
@@ -62,21 +61,30 @@ function Register() {
 
     const handleSubmitRegister = (e) => {
         e.preventDefault();
+        setIsDisabled(true);
         auth.register(name, email, password).then((data) => {
             if (data) {
+                auth.authorize(email, password).then((data) => {
+                    localStorage.setItem('jwt', data.token);
+                    props.setLoggedIn(true);
+                    navigate("/movies", {
+                        replace: true
+                    });
+                    props.getSavedFilms();
+                })
                 setAutorizationError('');
-                navigate('../signin');
+                navigate('../movies');
             } else { setAutorizationError('Пользователь с таким email уже существует.') }
         });
     }
 
-    useEffect(checkInputs, [nameHandler, emailHandler, passwordHandler])
+    useEffect(checkInputs, [name, email, password]);
 
     return (
         <section className="register">
             <Link to={'../'} className='auth__logo'><img src={logo} alt='логотип'></img></Link>
             <h1 className='auth__title'>Добро пожаловать!</h1>
-            <form className='auth__form' onSubmit={handleSubmitRegister} novalidate>
+            <form className='auth__form' onSubmit={handleSubmitRegister}>
                 <div className="auth__input">
                     <p className="auth__input-name">Имя</p>
                     <input className="auth__input_data" required={true} placeholder='Введите имя' name="name" onChange={nameHandler} value={name}></input>

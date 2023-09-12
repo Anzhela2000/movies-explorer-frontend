@@ -1,12 +1,12 @@
- import './Preloader.css'
- import spin from '../../images/spin.png'
- function Preloader(props){
+import './Preloader.css'
+import spin from '../../images/spin.png'
+function Preloader(props) {
 
-    return(
+    return (
         <section className={`preloader ${props.preloader ? "preloader_active" : ""}`}>
-        <img className="preloader__spin" src={spin}></img>
+            <img className="preloader__spin" src={spin}></img>
         </section>
     )
- }
+}
 
- export default Preloader;
+export default Preloader;

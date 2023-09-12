@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Menu from '../Menu/Menu';
 import logo from '../../images/logo.svg'
 function HeaderAuth(props) {
-    
+
     const [isOpenMenu, setIsOpenMenu] = useState(false);
 
     function openMenu() {

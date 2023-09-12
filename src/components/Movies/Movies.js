@@ -32,6 +32,7 @@ function Movies(props) {
     const [isCheckbox, setIsCheckbox] = useState(localStorageCheckbox);
     const [isPopup, setIsPopup] = useState(false);
     const [popupMessage, setIsPopupMessage] = useState('');
+    let allMovies = JSON.parse(window.localStorage.getItem('allMovies'));
 
     //отловить изменение экрана
 
@@ -54,13 +55,12 @@ function Movies(props) {
         }
     }, [width]);
 
-
     //проверка на необходимость кнопки еще и функция по добавлению доп.карточек
 
     const handleButtonMore = (arr) => {
         if (arr.length > isCountCards) {
             setIsLoadMore(true);
-        }  else if (arr.length === isCountCards) {
+        } else if (arr.length === isCountCards) {
             setIsLoadMore(false);
         }
         else {
@@ -78,33 +78,24 @@ function Movies(props) {
         setInput(e.target.value);
     }
 
-    //функция обращения к Api, дальше передает отфильтрованный массив
-
-    async function toogleCheckbox(e) {
-        if (isCheckbox) {
-            setIsCheckbox(false);
-        } else {
-            setIsCheckbox(true);
-            filterShortMovie(cards);
-        }
-    }
-
     function filterShortMovie(arr) {
-        const resultShortMovie = arr.filter((movie) =>
+        const regex = new RegExp(input, 'gi')
+        const result = arr.filter((movie) =>
+            movie.nameRU.match(regex) || movie.nameEN.match(regex));
+        const resultShortMovie = result.filter((movie) =>
             movie.duration < 40)
         if (resultShortMovie.length === 0) {
             setisErrorMessage('Ничего не найдено');
         }
         setCards(resultShortMovie);
+        handleButtonMore(resultShortMovie);
     }
 
     function filterArr(arr) {
         const regex = new RegExp(input, 'gi')
         const result = arr.filter((movie) =>
             movie.nameRU.match(regex) || movie.nameEN.match(regex));
-        if (isCheckbox) {
-            filterShortMovie(result);
-        } else if (result.length === 0) {
+        if (result.length === 0) {
             setisErrorMessage('Ничего не найдено');
         }
         else {
@@ -113,23 +104,62 @@ function Movies(props) {
         }
     }
 
-    async function getMovies(e) {
+    async function getMovies() {
+        try {
+            if (allMovies === null) {
+                await moviesApi.getFilms().then((movies) => {
+                    localStorage.setItem("allMovies", JSON.stringify(movies));
+                    if (isCheckbox) {
+                        filterShortMovie(JSON.parse(localStorage.getItem('allMovies')));
+                    } else {
+                        filterArr(JSON.parse(localStorage.getItem('allMovies')));
+                    }
+                })
+            }
+            else {
+                if (isCheckbox) {
+                    filterShortMovie(JSON.parse(localStorage.getItem('allMovies')));
+                } else {
+                    filterArr(JSON.parse(localStorage.getItem('allMovies')));
+                }
+            }
+        }
+        catch {
+            setisErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+        }
+    }
+
+    async function handleSubmit(e) {
         e.preventDefault();
+        setIsPreloader(true);
         setIsLoadMore(false);
         setisErrorMessage('');
-        setCards([]);
         if (input.length > 0) {
-            setIsPreloader(true);
             try {
-                let movies = await moviesApi.getFilms();
-                filterArr(movies);
-            } catch {
-                setisErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
-            } finally {
-                setIsPreloader(false);
+                await getMovies();
             }
-        } else {
+            catch {
+                setisErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+            }
+            finally {
+                setIsPreloader(false)
+            }
+        }
+        else {
             setisErrorMessage('Нужно ввести ключевое слово');
+        }
+    }
+
+    //функция обращения к Api, дальше передает отфильтрованный массив
+
+    function toogleCheckbox() {
+        setisErrorMessage('');
+        if (isCheckbox) {
+            setIsCheckbox(false);
+            filterArr(JSON.parse(localStorage.getItem('allMovies')));
+        } else {
+            setIsCheckbox(true);
+            filterShortMovie(cards);
         }
     }
 
@@ -138,7 +168,7 @@ function Movies(props) {
     function popupAddMovie() {
         setIsPopup(!isPopup);
         setTimeout(() => {
-            setIsPopup(isPopup => !isPopup)
+            setIsPopup(isPopup => !isPopup);
         }, 1000);
         setIsPopupMessage('Фильм добавлен');
     }
@@ -146,7 +176,7 @@ function Movies(props) {
     function popupDeleteMovie() {
         setIsPopup(!isPopup);
         setTimeout(() => {
-            setIsPopup(isPopup => !isPopup)
+            setIsPopup(isPopup => !isPopup);
         }, 1000);
         setIsPopupMessage('Фильм удален');
     }
@@ -168,7 +198,7 @@ function Movies(props) {
     return (
         <section className="movies">
             <Header loggedIn={true} activeClass={'header__movies_focus'} />
-            <SearchForm pushMovies={getMovies} handleChange={handleChange} inputValue={input} isCheckbox={isCheckbox} toogleCheckbox={toogleCheckbox} isErrorInput={isErrorMessage} />
+            <SearchForm pushMovies={handleSubmit} handleChange={handleChange} inputValue={input} isCheckbox={isCheckbox} toogleCheckbox={toogleCheckbox} isErrorInput={isErrorMessage} />
             <Preloader preloader={isPreloader} />
             <p className="movies__not-found-message">{isErrorMessage}</p>
             <MoviesCardList cards={cards} num={isCountCards} isLoadMore={isLoadMore} showMoreCards={showMoreCards} savedMovies={props.savedMovies} popupAddMovie={popupAddMovie} popupDeleteMovie={popupDeleteMovie} setIsSavedMovies={props.setIsSavedMovies} />

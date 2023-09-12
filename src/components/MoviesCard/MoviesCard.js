@@ -24,10 +24,11 @@ function MoviesCard({ sign, savedMovies, popupAddMovie, popupDeleteMovie, setIsS
         }
         else {
             const filterArr = savedMovies.find(i => i.nameRU === card.nameRU);
-            mainApi.deleteFilm(filterArr._id).then(() => {
+            mainApi.deleteFilm(filterArr._id).then((card) => {
                 setIsSave(false);
+                setIsSavedMovies((state) => state.filter((c) => c._id !== card._id));
                 popupDeleteMovie();
-            })
+            }).catch((err) => console.log(err));
         }
     }
 
@@ -37,7 +38,7 @@ function MoviesCard({ sign, savedMovies, popupAddMovie, popupDeleteMovie, setIsS
         } else {
             setIsSave(false);
         }
-    }, [])
+    })
 
     return (
         <section className="movies-card" key={card._id}>

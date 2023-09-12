@@ -38,6 +38,17 @@ function App() {
     }
   }
 
+  //Редактировать юзера
+
+  async function patchUser(name, email) {
+    try {
+      mainApi.patchUser(name, email).then((data) => { setCurrentUser(data) })
+    }
+    catch {
+      console.log('произошла ошибка');
+    }
+  }
+
   //Проверка токена
 
   useEffect(() => {
@@ -77,7 +88,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<ProtectedRouteAuth component={Register} loggedIn={loggedIn} setLoggedIn={setLoggedIn} getSavedFilms={getSavedFilms} />} />
           <Route path="/signin" element={<ProtectedRouteAuth component={Login} loggedIn={loggedIn} setLoggedIn={setLoggedIn} getSavedFilms={getSavedFilms} />} />
-          <Route path="/profile" element={<ProtectedRouteElement component={Profile} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+          <Route path="/profile" element={<ProtectedRouteElement component={Profile} loggedIn={loggedIn} setLoggedIn={setLoggedIn} patchUser={patchUser}/>} />
           <Route path="/saved-movies" element={<ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} savedMovies={isSavedMovies} setIsSavedMovies={setIsSavedMovies} />} />
           <Route path="/movies" element={<ProtectedRouteElement component={Movies} loggedIn={loggedIn} savedMovies={isSavedMovies} setIsSavedMovies={setIsSavedMovies} />} />
           <Route path="/" element={<Landing isLogin={loggedIn} />} />

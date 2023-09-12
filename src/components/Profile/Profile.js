@@ -39,19 +39,21 @@ function Profile(props) {
 
     //Изменение данных
 
-    function patchUser() {
+    async function patchUser() {
         setIsDisabled(true);
-        mainApi.patchUser(name, email).then((data) => {
-            setIsTitleName(data.name);
+        try {
+            props.patchUser(name, email)
+            setIsTitleName(currentUser.name);
             setisEditButton(true);
             setIsPopup(!isPopup);
             setTimeout(() => {
                 setIsPopup(isPopup => !isPopup);
             }, 1000);
             setIsPopupMessage('Данные изменены');
-        }).catch(
+        }
+        catch {
             setIsPopupMessage("Произошла ошибка")
-        )
+        }
     }
 
     //Валидация

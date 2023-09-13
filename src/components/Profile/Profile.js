@@ -42,17 +42,22 @@ function Profile(props) {
     async function patchUser() {
         setIsDisabled(true);
         try {
-            props.patchUser(name, email);
+            const user = await mainApi.patchUser(name, email);
+            props.setCurrentUser(user);
             setIsTitleName(currentUser.name);
             setisEditButton(true);
             setIsPopup(!isPopup);
+            setIsPopupMessage('Данные сохранены');
             setTimeout(() => {
                 setIsPopup(isPopup => !isPopup);
             }, 1000);
-            setIsPopupMessage('Данные изменены');
         }
         catch {
-            setIsPopupMessage("Произошла ошибка")
+            setIsPopupMessage('Произошла ошибка');
+            setTimeout(() => {
+                setIsPopup(isPopup => !isPopup);
+            }, 1000);
+            setisEditButton(true);
         }
     }
 

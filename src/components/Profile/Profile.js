@@ -53,11 +53,12 @@ function Profile(props) {
             }, 1000);
         }
         catch {
+            setIsPopup(!isPopup);
+            setisEditButton(true);
             setIsPopupMessage('Произошла ошибка');
             setTimeout(() => {
                 setIsPopup(isPopup => !isPopup);
-            }, 1000);
-            setisEditButton(true);
+            }, 1000);    
         }
     }
 

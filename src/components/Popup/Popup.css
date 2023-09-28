@@ -1,0 +1,18 @@
+.popup{
+    display: inline-block;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 10vh;
+    border-radius: 10px;
+    color: #FFF;
+    min-width: 100px;
+    min-height: 50px;
+    z-index: 1;
+    visibility: hidden;
+    padding: 8px 15px;
+}
+
+.popup__active{
+    visibility: visible !important;
+    transition: 1s;
+}

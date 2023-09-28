@@ -1,0 +1,63 @@
+.not-found {
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif';
+}
+
+.not-found__title {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 140px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 246px 440px 5px 440px;
+}
+
+.not-found__subtitle {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 0 184px 0;
+}
+
+.not-found__button-back {
+    color: #3456F3;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 60px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.not-found__button-back{
+    opacity: 0.7;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .not-found__title {
+        margin: 408px 184px 5px 184px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .not-found__title {
+        margin: 329px 10px 10px 10px;
+        font-size: 80px;
+
+    }
+
+    .not-found__subtitle {
+        margin-bottom: 284px;
+        font-size: 12px;
+    }
+}

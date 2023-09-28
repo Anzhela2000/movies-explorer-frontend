@@ -1,0 +1,35 @@
+.nav-tab {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 40px;
+    justify-content: center;
+    min-height: 66px;
+    align-items: center;
+    background-color: #F5F5F5;
+}
+
+.nav-tab__link {
+    margin: 24px 0 24px 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #000000;
+    text-decoration: underline;
+    transition: 1s;
+}
+
+.nav-tab__link:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+@media (min-width: 320px) and (max-width:677px) {
+    .nav-tab {
+        column-gap: 24px;
+    }
+
+    .nav-tab__link {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
